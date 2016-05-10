@@ -10,7 +10,7 @@ int BTree::componentNode::traverseNode(std::string key, componentNode *&c, int &
 		index = (imin + ((imax - imin) / 2));
 		int result = (valueNodeSet[index]->key).compare(key);
 		if (result < 0) {
-			//valueArray is less than key 
+			//valueArray is less than key  
 			imin = index + 1;
 
 		}
