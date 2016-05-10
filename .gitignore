@@ -218,3 +218,5 @@ Debug/
 B-Tree_Revisited/x64/
 B-Tree_Revisited/Debug/
 *.gch
+B-Tree_Revisited/*.gch
+B-Tree_Revisited/*.exe
