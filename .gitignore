@@ -66,7 +66,7 @@ artifacts/
 *.pidb
 *.svclog
 *.scc
-
+*.exe
 # Chutzpah Test files
 _Chutzpah*
 
@@ -210,3 +210,11 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+
+
+# Custom removals
+x64/
+Debug/
+B-Tree_Revisited/x64/
+B-Tree_Revisited/Debug/
+*.gch
