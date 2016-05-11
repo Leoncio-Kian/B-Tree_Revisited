@@ -31,9 +31,9 @@ private:
 		//a setter function for setting valueNodes.
 		void setValueNode(int index, valueNode * n);
 		//a function for traversing the component node.
-		int traverseNode(std::string key, componentNode *&c, int &imin);
+		int traverseNode(std::string key, componentNode *&c, int &index);
 		//function for inserting a value node (i think).
-		virtual int insertNode(valueNode * n, int index, componentNode * left, componentNode * right);
+		virtual int insertNode(valueNode * newNode, int index, componentNode * left, componentNode * right);
 		//function for deleting a value node (i think).
 		virtual int deleteNode();
 		//setter function for setting the parent node of this node.

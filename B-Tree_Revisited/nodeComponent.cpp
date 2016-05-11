@@ -1,46 +1,76 @@
 #include "BTree.h"
 
+//pointer to the root of the tree.
 BTree *BTree::componentNode::bTreeRoot = nullptr;
-int BTree::componentNode::traverseNode(std::string key, componentNode *&c, int &imin) {
+
+//a function for traversing the component node.
+int BTree::componentNode::traverseNode(std::string key, componentNode *&c, int &index) {
+	//check if there are entries in the node.
+	if (currentNodeCount == 0) {
+		//if there aren't any then set the index to 0.
+		index = 0;
+		return 2;
+	}
+
 	//binary search for fast search.
 
+	//set the index and maximum to be the highest index entry in the array.
 	int index, imax = currentNodeCount - 1;
-	imin = 0;
-	while (imin <= imax && currentNodeCount != 0) {
-		index = (imin + ((imax - imin) / 2));
-		int result = (valueNodeSet[index]->key).compare(key);
-		if (result < 0) {
-			//valueArray is less than key  
-			imin = index + 1;
+	//set the minimum to be the lowest index entry in the array.
+	int imin = 0;
 
+	//while the minimum is less than or equal to the maximum
+	while (imin <= imax) {
+		//set the index to be the midpoint between the minimum and maximum.
+		index = (imin + ((imax - imin) / 2));
+		//compare the key at the index with key put in.
+		int result = (valueNodeSet[index]->key).compare(key);
+		//if the result is less than zero, the key put in comes after the key at the index.
+		if (result < 0) {
+			//set the minimum to be the location of the index plus one.
+			imin = index + 1;
 		}
+		//if the result if more than zero, the key put in comes before the key at the index.
 		else if (result > 0) {
-			//valueArry is more than key
+			//set the maximum to be the value of the index minus one.
 			imax = index - 1;
 		}
+		//if the result is zero then the key already exists 
 		else {
-			//key already exists!
+			//try some other key, this b tree doesn't support this mumbojumbo.
 			return 1;
 		}
 	}
+	//the minimum is where the new valueNode should be inserted, return it.
+	index = imin;
 
 	return 0;
 }
-int BTree::componentNode::insertNode(valueNode * n, int index, componentNode * left, componentNode * right) {
-	for (int i = currentNodeCount; i >= index; i--) 
+
+//function for inserting a value node (i think).
+int BTree::componentNode::insertNode(valueNode * newNode, int index, componentNode * left, componentNode * right) {
+	//shift all valueNodes after the index one to the right to make space for the new valueNode.
+	for (int i = currentNodeCount; i >= index; i--) {
+		//shifting one valuenode to the right.
 		valueNodeSet[i] = valueNodeSet[i - 1];
+	}
 
-	valueNodeSet[index] = n;
+	//add the new node to the array.
+	valueNodeSet[index] = newNode;
 
-	if (++currentNodeCount == size + 1) {
+	//increase the currentnodecount to account for the new valueNode.
+	++currentNodeCount;
+	//check if the component node is full.
+	if (currentNodeCount == size + 1) {
 		//the component is full, time to resize
 
-		int count1 = size / 2;
-		int count2 = ((size + 1) / 2);
-		leafNode * l = new leafNode(count1, size, parent);
-		leafNode * r = new leafNode(count2, size, parent);
+		
+		int countLeft = size / 2;
+		int countRight = ((size + 1) / 2);
+		leafNode * l = new leafNode(countLeft, size, parent);
+		leafNode * r = new leafNode(countRight, size, parent);
 
-		valueNode * m = valueNodeSet[count1];
+		valueNode * m = valueNodeSet[countLeft];
 
 		//add lower half to node l, upper half to node r
 
@@ -75,17 +105,24 @@ int BTree::componentNode::insertNode(valueNode * n, int index, componentNode * l
 	}
 	return 0;
 }
+//function for deleting a value node (i think).
 int BTree::componentNode::deleteNode() {
 
 	return 0;
 }
+
+//a setter function for setting valueNodes.
 void BTree::componentNode::setValueNode(int index, valueNode * n) {
 	this->valueNodeSet[index] = n;
 	n = NULL;
 }
+
+//setter function for setting the root of the tree (this doesnt make any sense LOL).
 void BTree::componentNode::setBTree(BTree * b) {
 	bTreeRoot = b;
 }
+
+//function to print the node.
 void BTree::componentNode::printNode() {
 	for (int i = 0; i < currentNodeCount; i++)
  		std::cout << valueNodeSet[i]->key << std::endl;
@@ -221,6 +258,7 @@ int BTree::compositeNode::deleteNode() {
 
 	return 0;
 }
+//setter function for setting the parent node of this node.
 int BTree::componentNode::setParent(componentNode * n) {
 	parent = n;
 	return 0;
