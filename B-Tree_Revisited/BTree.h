@@ -30,10 +30,10 @@ private:
 	public:
 		//a setter function for setting valueNodes.
 		void setValueNode(int index, valueNode * n);
-		//a function for traversing the component node.
-		int traverseNode(std::string key, componentNode *&c, int &index);
+		
+		virtual int traverseNode(std::string key, componentNode *&c, int &index) =0;
 		//function for inserting a value node (i think).
-		virtual int insertNode(valueNode * newNode, int index, componentNode * left, componentNode * right);
+		virtual int insertNode(valueNode * newNode, int index, componentNode * left, componentNode * right) = 0;
 		//function for deleting a value node (i think).
 		virtual int deleteNode();
 		//setter function for setting the parent node of this node.
@@ -41,14 +41,20 @@ private:
 		//setter function for setting the root of the tree (this doesnt make any sense LOL).
 		void setBTree(BTree * b);
 		//function to print the node.
-		void printNode();
+		virtual void printNode() = 0;
 	};
 
 	//leaf nodes are the nodes that are always at the bottom. The extend from componentNodes.
 	//due to the nature of B-Trees all leaf nodes are at the same level.
 	class leafNode :public componentNode {
 	public:
+
 		leafNode(int count, int size, componentNode * parent);
+		//a function for traversing the component node.
+		int traverseNode(std::string key, componentNode *&c, int &index);
+		//function for inserting a value node (i think).
+		int insertNode(valueNode * newNode, int index, componentNode * left, componentNode * right);
+		void printNode();
 	};
 
 	//compositeNodes comprise the majority of the tree (other than the bottom layer).
@@ -66,7 +72,7 @@ private:
 		//a setter function for setting a componentNode in an index.
 		void setComponentNode(int index, componentNode * n);
 		//a function fro traversing a node.
-		int traverseNode(std::string key, componentNode *&c, int &imin);
+		int traverseNode(std::string key, componentNode *&c, int &index);
 		//a function for inserting a node.
 		int insertNode(valueNode * n, int index, componentNode * left, componentNode * right);
 		//a function for deleting a node.

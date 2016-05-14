@@ -32,28 +32,12 @@ int BTree::insertBTree(std::string key, std::string value) {
 	//????
 	int index;
 
-	//create a pointer for traversal
-	componentNode * P_traversalNode = root;
 
-	//create a new pointer and dynamic cast the root to it.
-	compositeNode * rootCompositeNode = dynamic_cast<compositeNode*> (root);
-	//if its a composite node the pointer will have a value.
-	if (rootCompositeNode) {
-		//begin traversal through nodes (recursively) until finding correct node and index to insert).
-		rootCompositeNode->traverseNode(key, P_traversalNode, index);
-		//insert the valude node into the node at correct index.
-		P_traversalNode->insertNode(n, index, NULL, NULL);
-	}
-	//otherwise the node is a leaf node (or some error occurred and there is no root).
-	else {
-		//YOU SHOULD CHECK TO MAKE SURE THERE IS A ROOT.
+	//begin traversal through nodes (recursively) until finding correct node and index to insert).
+	root->traverseNode(key, root, index);
+	//insert the valude node into the node at correct index.
+	root->insertNode(n, index, NULL, NULL);
 
-		//traverse the leaf node for the correct index to insert the valueNode.
-		//CHECK WHY P_traversalNode IS NEEDED
-		root->traverseNode(key, P_traversalNode, index);
-		//insert the valueNode at the correct index.
-		root->insertNode(n, index, NULL, NULL);
-	}
 	return 0;
 }
 
@@ -70,14 +54,6 @@ int BTree::setRoot(componentNode * n) {
 
 //function for printing the information stored in the B-Tree.
 void BTree::printTree() {
-	//create a new compositeNode pointer and dynamiccast the root to it.
-	compositeNode * rootCompositeNode = dynamic_cast<compositeNode*> (root);
-	//if the compositeNode has a value then the root is a compositeNode. 
-	if (rootCompositeNode)
-		//start printing (recursively).
-		rootCompositeNode->printNode();
-	//else the root is a leaf node and can be treated as is.
-	else
 		//start printing (recursively).
 		root->printNode();
 }
