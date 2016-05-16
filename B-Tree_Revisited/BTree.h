@@ -31,7 +31,7 @@ private:
 		//a setter function for setting valueNodes.
 		void setValueNode(int index, valueNode * n);
 		
-		virtual int traverseNode(std::string key, componentNode *&c, int &index) =0;
+		virtual int traverseNode(std::string key, componentNode *&c, int &index)=0;
 		//function for inserting a value node (i think).
 		virtual int insertNode(valueNode * newNode, int index, componentNode * left, componentNode * right) = 0;
 		//function for deleting a value node (i think).
@@ -42,6 +42,8 @@ private:
 		void setBTree(BTree * b);
 		//function to print the node.
 		virtual void printNode() = 0;
+		//function for printing the tree structure
+		virtual void printStructure() = 0;
 	};
 
 	//leaf nodes are the nodes that are always at the bottom. The extend from componentNodes.
@@ -55,6 +57,7 @@ private:
 		//function for inserting a value node (i think).
 		int insertNode(valueNode * newNode, int index, componentNode * left, componentNode * right);
 		void printNode();
+		void printStructure();
 	};
 
 	//compositeNodes comprise the majority of the tree (other than the bottom layer).
@@ -79,6 +82,7 @@ private:
 		int deleteNode();
 		//a function for printing the information in this node.
 		void printNode();
+		void printStructure();
 	};
 	
 
@@ -99,6 +103,7 @@ public:
 	int setRoot(componentNode * n);
 	//function for printing the information stored in the B-Tree.
 	void printTree();
+	void printTreeStructure();
 };
 
 #endif /* BTREE_H*/

@@ -10,8 +10,9 @@ public:
 		btree = new BTree(size);
 	}
 	void run() {
-		int i = 0;
+		int i = 0, counter = 0;
 		std::string key, value;
+
 		while (i != -1) {
 			std::cout << "enter what you would like to do" << std::endl;
 			std::cin >> i;
@@ -19,9 +20,9 @@ public:
 				case -1:
 					break;
 				case 1:
-					
-					std::cin >> key >> value;
-					btree->insertBTree(key, value);
+					//forget adding the value, the value doesnt matter for testing.
+					std::cin >> key;
+					btree->insertBTree(key, std::to_string(counter++));
 					break;
 				case 2:
 					btree->printTree();

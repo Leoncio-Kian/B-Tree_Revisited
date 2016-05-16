@@ -37,7 +37,7 @@ int BTree::insertBTree(std::string key, std::string value) {
 	root->traverseNode(key, root, index);
 	//insert the valude node into the node at correct index.
 	root->insertNode(n, index, NULL, NULL);
-
+	
 	return 0;
 }
 
@@ -56,4 +56,8 @@ int BTree::setRoot(componentNode * n) {
 void BTree::printTree() {
 		//start printing (recursively).
 		root->printNode();
+}
+void BTree::printTreeStructure() {
+	//start printing structure
+	root->printStructure();
 }
