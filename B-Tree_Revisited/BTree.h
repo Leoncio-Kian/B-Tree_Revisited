@@ -57,7 +57,7 @@ private:
 		//function for inserting a value node (i think).
 		int insertNode(valueNode * newNode, int index, componentNode * left, componentNode * right);
 		void printNode();
-		void printStructure();
+		void printValueNodes();
 	};
 
 	//compositeNodes comprise the majority of the tree (other than the bottom layer).
@@ -82,7 +82,8 @@ private:
 		int deleteNode();
 		//a function for printing the information in this node.
 		void printNode();
-		void printStructure();
+		void printValueNodes();
+		componentNode ** getComponentNodeSet();
 	};
 	
 

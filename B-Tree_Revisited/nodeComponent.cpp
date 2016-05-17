@@ -146,6 +146,13 @@ void BTree::leafNode::printNode() {
 	std::cout << currentNodeCount << std::endl;
 }
 
+void BTree::leafNode::printValueNodes() {
+	for (int i = 0; i < currentNodeCount; i++) {
+		std::cout << "|"<< valueNodeSet[i]->key
+	}
+	std::cout << "|" << std::endl;
+}
+
 BTree::compositeNode::compositeNode(int count, int size, componentNode * parent) {
 	this->size = size;
 	this->currentNodeCount = count;
@@ -273,3 +280,12 @@ void BTree::compositeNode::printNode() {
 	componentNodeSet[currentNodeCount]->printNode();
 	std::cout << currentNodeCount << std::endl;
 }	
+void BTree::compositeNode::printValueNodes() {
+	for (int i = 0; i < currentNodeCount; i++) {
+		std::cout << "|" << valueNodeSet[i]->key
+	}
+	std::cout << "|" << std::endl;
+}
+BTree::componentNode** BTree::compositeNode::getComponentNodeSet() {
+	return componentNodeSet;
+}

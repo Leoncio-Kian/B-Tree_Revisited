@@ -1,5 +1,5 @@
 #include "BTree.h"
-
+#include <queue>
 
 //constructor
 BTree::BTree(int size) {
@@ -59,5 +59,11 @@ void BTree::printTree() {
 }
 void BTree::printTreeStructure() {
 	//start printing structure
-	root->printStructure();
+	std::queue<componentNode*> breadthFirstQueue;
+	breadthFirstQueue.push(root);
+
+	while (!breadthFirstQueue.empty()) {
+
+	}
+	
 }
