@@ -37,13 +37,14 @@ private:
 		//function for deleting a value node (i think).
 		virtual int deleteNode();
 		//setter function for setting the parent node of this node.
+		int getCurrentNodeCount(){ return currentNodeCOunt;	}
 		int setParent(componentNode * n);
 		//setter function for setting the root of the tree (this doesnt make any sense LOL).
 		void setBTree(BTree * b);
 		//function to print the node.
 		virtual void printNode() = 0;
-		//function for printing the tree structure
-		virtual void printStructure() = 0;
+		//function for printing the value nodes stored
+		virtual void printValueNodes() = 0;
 	};
 
 	//leaf nodes are the nodes that are always at the bottom. The extend from componentNodes.
@@ -85,7 +86,13 @@ private:
 		void printValueNodes();
 		componentNode ** getComponentNodeSet();
 	};
-	
+	template<typename T>
+class Iter {
+	virtual bool isValid() = 0;
+	virtual T currentItem() = 0;
+	virtual void next() = 0;
+	virtual void reset() = 0;
+}
 
 
 	//pointer to the root of the tree.
