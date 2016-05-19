@@ -63,7 +63,26 @@ void BTree::printTreeStructure() {
 	breadthFirstQueue.push(root);
 
 	while (!breadthFirstQueue.empty()) {
-
+		//dynamically cast componentnode as a compositeNode.
+		compositeNode * isACompositeNode = dynamic_cast<compositeNode*>(breadthFirstQueue.front());
+		//if componentNode was a compositeNode
+		if(isACompositeNode){
+			//get the set of componentNodes from the compositeNodes
+			//THIS CANNOT BE EMPTY.
+			componentNode ** componentNodeSet = isACompositeNode->getComponentNodeSet();
+			//get the node count
+			int nodeCount = isACompositeNode->getCurrentNodeCount();
+			//go through the compositeNode
+			for(int index = 0; index <= nodeCount; index++){
+				//add the componentNode specified by the index to the queue
+				breadthFirstQueue.push(componentNodeSet[index]);
+			}
+			//have the pointer point to null, just in case;
+			isACompositeNode = NULL;
+		}
+		//if its not a compositeNode then its a leaf, but the following code applies to both
+		//pop the node from the queue
+		componentNode
 	}
 	
 }
