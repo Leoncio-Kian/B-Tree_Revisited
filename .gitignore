@@ -221,3 +221,5 @@ B-Tree_Revisited/Debug/
 B-Tree_Revisited/*.gch
 B-Tree_Revisited/*.exe
 *.opendb
+*.VC.db
+*.VC.VC.opendb
