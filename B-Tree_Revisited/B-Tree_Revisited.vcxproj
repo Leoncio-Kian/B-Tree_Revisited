@@ -119,8 +119,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BTree.cpp" />
+    <ClCompile Include="compositeNode.cpp" />
     <ClCompile Include="Driver.cpp" />
+    <ClCompile Include="Iter.cpp" />
+    <ClCompile Include="leafNode.cpp" />
     <ClCompile Include="nodeComponent.cpp" />
+    <ClCompile Include="Visiter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BTree.h" />
